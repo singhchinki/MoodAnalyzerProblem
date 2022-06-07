@@ -16,6 +16,7 @@ namespace MS.TestMood
         }
 
         [Test]
+       
         public void GivenHappyMoodShouldReturnHappy()
         {
             string expected = "Happy";
@@ -23,7 +24,22 @@ namespace MS.TestMood
             MoodAnalyser moodAnalyse = new MoodAnalyser(message);
             string mood = moodAnalyse.AnalyseMood();
             Assert.AreEqual (expected, mood);
-
         }
+
+        [Test]
+        public void Given_Empty_Mood_Should_Throw_MoodAnalysisException_Indicating_EmptyMood()
+        {
+            try
+            {
+                string message = "";
+                MoodAnalyser moodAnalyse = new MoodAnalyser(message);
+                string mood = moodAnalyse.AnalyseMood();
+            }
+            catch (MoodAnalyzerCustomException e)
+            {
+                Assert.AreEqual("Mood should not be Empty", e.Message);
+            }
+        }
+
     }
 }
