@@ -4,7 +4,9 @@ namespace MS.TestMood
 {
     public class MsTestMood
     {
-
+        /// <summary>
+        /// Tc 1.1: Given-I am in said Mood message should return Sad
+        /// </summary>
         [Test]
         public void GivenSadMoodShouldReturnSad()
         {
@@ -15,6 +17,9 @@ namespace MS.TestMood
             Assert.AreEqual(expected, mood);
         }
 
+        /// <summary>
+        /// Tc 1.2 & 2.1 : Givens i am in Happy mood should return Happy.
+        /// </summary>
         [Test]
        
         public void GivenHappyMoodShouldReturnHappy()
@@ -25,7 +30,9 @@ namespace MS.TestMood
             string mood = moodAnalyse.AnalyseMood();
             Assert.AreEqual (expected, mood);
         }
-
+        /// <summary>
+        /// TC.3.2: Givens the empty mood should throw mood analysis exception indicating empty mood.
+        /// </summary>
         [Test]
         public void Given_Empty_Mood_Should_Throw_MoodAnalysisException_Indicating_EmptyMood()
         {
@@ -40,6 +47,9 @@ namespace MS.TestMood
                 Assert.AreEqual("Mood should not be Empty", e.Message);
             }
         }
+        /// <summary>
+        /// TC 3.1: Givens the null mood should throw mood analysis exception.
+        /// </summary>
         [Test]
         public void Given_Null_Mood_Should_Throw_MoodAnalysisException()
         {
