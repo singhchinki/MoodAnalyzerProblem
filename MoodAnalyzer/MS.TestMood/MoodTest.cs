@@ -67,12 +67,25 @@ namespace MS.TestMood
         /// <summary>
         /// TC Case 4.1 Givens the mood analse class name should return mood analyser object.
         /// </summary>
+        
+        [Test]
         public void GivenMoodAnalseClassName_shouldReturnMoodAnalyserObject()
         {
             string message = null;
-            object expected = new MoodAnalyser(message) ;
-            object obj = MoodAnalyserFactory.CreateMoodAnalyser("MoodAnalyzerProblem", "MoodAnalyser" );
-            expected.Equals(obj) ;
+            object expected = new MoodAnalyser(message);
+            object obj = MoodAnalyserFactory.CreateMoodAnalyser("MoodAnalyzerProblem", "MoodAnalyser");
+            expected.Equals(obj);
+        }
+        /// <summary>
+        /// Givens the mood analyse class name shoul return mood analyser oject parameterized constructor.
+        /// </summary>
+        /// -----------------------Tc5.1-----------------
+        [Test]
+        public void GivenMoodAnalyseClassName_ShoulReturnMoodAnalyserOjectParameterizedConstructor()
+        {
+            object expected = new MoodAnalyser("Happy");
+            object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", "Happy");
+            expected.Equals(obj);
         }
     }
 }
