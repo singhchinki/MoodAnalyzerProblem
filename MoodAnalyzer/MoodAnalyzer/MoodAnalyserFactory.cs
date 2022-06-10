@@ -67,7 +67,30 @@ namespace MoodAnalyzer
             }
 
         }
+        /// <summary>
+        /// Invokes the analyse mood.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="methodeName">Name of the methode.</param>
+        /// <returns></returns>
+        /// <exception cref="MoodAnalyzerException">Method is not found</exception>
+        /// --------------------------TC5.2---------------------------------------
+        public static string InvokeAnalyseMood(string message, string methodeName)
+        {
+            try
+            {
+                Type type = Type.GetType("MoodAnalyzerProblem.MoodAnalyzer");
+                object moodAnalyseObject = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer", message);
+                MethodInfo methodeInfo = type.GetMethod(methodeName);
+                object mood = methodeInfo.Invoke(moodAnalyseObject, null);
+                return mood.ToString();
+            }
+            catch
+            {
+                throw new MoodAnalyzerCustomException(MoodAnalyzerCustomException.ExceptionType.NO_SUCH_METHOD, "Method is not found");
+            }
+        }
 
-       
+
     }
 }

@@ -87,5 +87,20 @@ namespace MS.TestMood
             object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", "Happy");
             expected.Equals(obj);
         }
-    }
+        [Test]
+        /// <summary>
+        /// TC 5.2 Given class name  when not proper then throw no such class exception
+        /// </summary>
+        public void GivenClassName_WhenImproper_ThenShouldThrowNoSuchClassException()
+        {
+            string expected = "Class Not Found";
+            try
+            {
+                object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor("MoodAnalyzerProblem.WrongClass", "MoodAnalyzer", "Happy");
+            }
+            catch (MoodAnalyzerCustomException exception)
+            {
+                Assert.AreEqual(expected, exception.Message);
+            }
+        }
 }
