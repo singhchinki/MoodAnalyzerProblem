@@ -21,14 +21,14 @@ namespace MS.TestMood
         /// Tc 1.2 & 2.1 : Givens i am in Happy mood should return Happy.
         /// </summary>
         [Test]
-       
+
         public void GivenHappyMoodShouldReturnHappy()
         {
             string expected = "Happy";
             string message = "I am in any Mood";
             MoodAnalyser moodAnalyse = new MoodAnalyser(message);
             string mood = moodAnalyse.AnalyseMood();
-            Assert.AreEqual (expected, mood);
+            Assert.AreEqual(expected, mood);
         }
         /// <summary>
         /// TC.3.2: Givens the empty mood should throw mood analysis exception indicating empty mood.
@@ -67,7 +67,7 @@ namespace MS.TestMood
         /// <summary>
         /// TC Case 4.1 Givens the mood analse class name should return mood analyser object.
         /// </summary>
-        
+
         [Test]
         public void GivenMoodAnalseClassName_shouldReturnMoodAnalyserObject()
         {
@@ -103,4 +103,44 @@ namespace MS.TestMood
                 Assert.AreEqual(expected, exception.Message);
             }
         }
+    }
+    [Test]
+    public void GivenClass_WhenConstructorNotProper_ThenShouldThrowNoSuchConstructorException()
+    {
+        string expected = "Constructor is Not Found";
+        try
+        {
+            object obj = MoodAnalyzerFactory.CreateMoodAnalyzerUsingParameterizedConstructor("MoodAnalyzerProblem.MoodAnalyzer", "WrongConstructor", "Happy");
+        }
+        catch (MoodAnalyzerException exception)
+        {
+            Assert.AreEqual(expected, exception.Message);
+        }
+    }
+    /// <summary>
+    ///  TC 6.1 Given happy message using reflection when proper should return happy mood
+    /// </summary>
+    [Test]
+    public void GivenHappyMessage_WhenUsingReflection_ThenShouldReturnHappyMood()
+    {
+        string expected = "Happy";
+        object obj = MoodAnalyzerFactory.InvokeAnalyseMood("Happy", "analyseMood");
+        Assert.AreEqual(expected, obj);
+    }
+    /// <summary>
+    ///  TC 6.2 Given happy message when improper methode then should throw 
+    /// </summary>
+    [Test]
+    public void GivenHappyMessage_WhenImproperMethode_ThenShouldThrowMoodAnalysisException()
+    {
+        string expected = "Method is not found";
+        try
+        {
+            object obj = MoodAnalyzerCustomFactory.InvokeAnalyseMood("Happy", "WrongAnalyseMood");
+        }
+        catch (MoodAnalyzerCustomException exception)
+        {
+            Assert.AreEqual(expected, exception.Message);
+        }
+    }
 }
