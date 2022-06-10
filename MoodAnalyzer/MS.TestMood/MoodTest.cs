@@ -64,5 +64,15 @@ namespace MS.TestMood
                 Assert.AreEqual("Mood should not be null", e.Message);
             }
         }
+        /// <summary>
+        /// TC Case 4.1 Givens the mood analse class name should return mood analyser object.
+        /// </summary>
+        public void GivenMoodAnalseClassName_shouldReturnMoodAnalyserObject()
+        {
+            string message = null;
+            object expected = new MoodAnalyser(message) ;
+            object obj = MoodAnalyserFactory.CreateMoodAnalyser("MoodAnalyzerProblem", "MoodAnalyser" );
+            expected.Equals(obj) ;
+        }
     }
 }
